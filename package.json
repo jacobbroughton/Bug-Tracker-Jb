@@ -8,7 +8,7 @@
     "start": "PORT=3001 npm start --prefix client",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm run start\" \"npm run server\" ",
-     "find": "pgrep node",
+    "find": "pgrep node",
     "kill": "pkill node"
   },
   "repository": {
@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/jlbroughton88/Bug-Tracker#readme",
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.0",
     "concurrently": "^5.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react-router-dom": "^5.1.2"
   }
 }

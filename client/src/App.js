@@ -1,34 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { action } from "./actions/action";
-import logo from './logo.svg';
+import NavBar from "./components/NavBar";
+import { useAuth0 } from "./react-auth0-spa";
 import './App.css';
 
-class App extends Component {
+const App = () => {
 
-  constructor(props) {
-    super(props)
-    this.action = this.action.bind(this);
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.action = this.action.bind(this);
+  // }
 
-  action = (event) => {
-    this.props.action();
-  }
+  // action = (event) => {
+  //   this.props.action();
+  // }
 
-  render() {
+  // render() {
+
+    const { loading } = useAuth0();
+
+    if(loading) {
+      return <div>Loading...</div>
+    }
+
     return (
       <div className="App">
+        <NavBar/>
         <h1>Hello World</h1>
-        <pre>
-          {
-            JSON.stringify(this.props.reducer)
-          }
-        </pre>
-        <button onClick={this.action}>Test Redux</button>
+        {/* <pre>
+          <h2>
+            {
+              JSON.stringify(this.props.reducer)
+            } 
+          </h2>
+        </pre> */}
+        {/* <button onClick={this.action}>Test Redux</button> */}
       </div>
     );
   }
-}
 
 const mapStateToProps = state => ({
   ...state
