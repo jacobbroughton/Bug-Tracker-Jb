@@ -11,12 +11,19 @@ export const Auth0Provider = ({
     onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
     ...initOptions
 }) => {
+
+    // Array destructuring
+    // useState creates a single piece of state.
+    // [ the state itself,  function to update state ]
     const [isAuthenticated, setIsAuthenticated] = useState();
     const [user, setUser] = useState();
     const [auth0Client, setAuth0] = useState();
     const [loading, setLoading] = useState(true);
     const [popupOpen, setPopupOpen] = useState(false);
 
+
+    // Similar to componentDidMount.
+    // Can be used for side effects such as data fetching, setting up a subscription, or changing the DOM.
     useEffect(() => {
         const initAuth0 = async () => {
             const auth0FromHook = await createAuth0Client(initOptions);
@@ -34,6 +41,7 @@ export const Auth0Provider = ({
             if (isAuthenticated) {
                 const user = await auth0FromHook.getUser();
                 setUser(user);
+                console.log(user)
             }
 
             setLoading(false);
@@ -43,6 +51,7 @@ export const Auth0Provider = ({
     }, []);
 
 
+    // Login Popup logic
     const loginWithPopup = async (params = {}) => {
         setPopupOpen(true);
         try {
@@ -58,6 +67,8 @@ export const Auth0Provider = ({
         setIsAuthenticated(true);
     }
 
+
+    // Redirect Callback
     const handleRedirectCallback = async () => {
         setLoading(true);
         await auth0Client.handleRedirectCallback();
