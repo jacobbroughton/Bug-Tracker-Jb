@@ -3,6 +3,8 @@ Functions that create actions, or simply return them.
 
 # Actions
 Payloads of information which send data to the store.
+Return an object that can contain 2 keys, type and payload.
+Default case is necessary for the event that an action type does not exist to prevent from breaking.
 
 # Store
 Holds application state

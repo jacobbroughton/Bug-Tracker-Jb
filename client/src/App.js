@@ -1,51 +1,34 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { action } from "./actions/action";
+
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux"
+import allActions from "./actions/index";
 import NavBar from "./components/NavBar";
 import { useAuth0 } from "./react-auth0-spa";
 import './App.css';
 
 const App = () => {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.action = this.action.bind(this);
-  // }
+  const counter = useSelector(state => state.reducer);
+  const { loading } = useAuth0();
 
-  // action = (event) => {
-  //   this.props.action();
-  // }
+  const dispatch = useDispatch();
 
-  // render() {
 
-    const { loading } = useAuth0();
-
-    if(loading) {
-      return <div>Loading...</div>
-    }
-
-    return (
-      <div className="App">
-        <NavBar/>
-        <h1>Hello World</h1>
-        {/* <pre>
-          <h2>
-            {
-              JSON.stringify(this.props.reducer)
-            } 
-          </h2>
-        </pre> */}
-        {/* <button onClick={this.action}>Test Redux</button> */}
-      </div>
-    );
+  if (loading) {
+    return <div>Loading...</div>
   }
 
-const mapStateToProps = state => ({
-  ...state
-});
+  return (
+    <div className="App">
+      <NavBar />
+      <h1>Hello World</h1>
+      <h1>Counter: {counter}</h1>
+      <button onClick={() => dispatch(allActions.actions.increment())}>Add!</button>
+      <button onClick={() => dispatch(allActions.actions.decrement())}>Decrease!</button>
+    </div>
+  );
+}
 
-const mapDispatchToProps = dispatch => ({
-  action: () => dispatch(action())
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default App;
