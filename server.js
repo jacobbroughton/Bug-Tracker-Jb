@@ -48,7 +48,9 @@ console.log(SQL_SERVER);
 //     res.send("Hello")
 // })
 
-
+app.get("/", (req, res) => {
+    console.log("Hello")
+})
 
 // function queryDatabase() {
 //     console.log("REading rows from the table...");
