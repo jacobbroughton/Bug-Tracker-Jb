@@ -12,6 +12,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm run start\" \"npm run server\" ",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client",
     "find": "pgrep node",
     "kill": "pkill node"
   },
