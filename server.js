@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
+const tediousExpress = require("express4-tedious")
+
 require("dotenv").config();
+
 const { Connection, Request } = require("tedious");
 
 const SQL_USER = process.env.SQL_USERNAME;
@@ -19,7 +23,7 @@ const config = {
     },
     server: SQL_SERVER,
     options: {
-        database: "master",
+        database: "BugTracker",
         encrypt: true
     }
 };
@@ -36,11 +40,38 @@ connection.on("connect", err => {
     }
 })
 
+app.use((req, res, next) => {
+    req.sql = tediousExpress(req, connection);
+    console.log(req.sql)
+    next();
+})
+
+router.get("/", (req, res) => {
+    console.log("boiii")
+    req.sql("SELECT * FROM bt_user for json path")
+    .into(res)
+})
+
 function queryDatabase() {
     console.log("REading rows from the table...");
 
     // Read all rows from table
     // Make a query
+    const request = new Request('SELECT * FROM bt_user', (err, rowCount) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(rowCount + " rows")
+        }
+    })
+    request.on('row', (columns) => {
+        columns.forEach((column) => {
+            console.log(column.value)
+        })
+    })
+    connection.execSql(request)
+
+
 }
 
 
