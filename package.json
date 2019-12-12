@@ -1,6 +1,10 @@
 {
   "name": "bug-tracker",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.12.0",
+    "npm": "6.10.3"
+  },
   "description": "This bug tracker allows users to log and keep track of errors that pop up during development.",
   "main": "server.js",
   "scripts": {
@@ -15,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/jlbroughton88/Bug-Tracker.git"
   },
-  "author": "",
+  "author": "Jacob Broughton",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jlbroughton88/Bug-Tracker/issues"

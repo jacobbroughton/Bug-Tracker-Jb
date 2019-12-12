@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import allActions from "./actions/index";
 import NavBar from "./components/NavBar";

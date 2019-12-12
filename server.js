@@ -74,6 +74,6 @@ app.get("/", (req, res) => {
 
 
 
-app.listen(5001 || process.env.PORT, () => {
+app.listen( process.env.PORT || 5001 , () => {
     console.log("Server listening on port 5001");
 });
