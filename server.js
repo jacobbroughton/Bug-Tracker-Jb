@@ -47,9 +47,7 @@ app.use((req, res, next) => {
 })
 
 router.get("/", (req, res) => {
-    console.log("boiii")
-    req.sql("SELECT * FROM bt_user for json path")
-    .into(res)
+    res.send("Hello")
 })
 
 function queryDatabase() {
